@@ -1,14 +1,13 @@
-# Menggunakan image dasar Nginx dari Docker Hub
-FROM nginx:latest
+# Menggunakan Nginx berbasis Alpine (lebih ringan)
+FROM nginx:alpine
 
-# Menyalin file konfigurasi Nginx custom ke dalam container (optional)
-# Misalnya jika Anda ingin menambahkan konfigurasi khusus
+# Menyalin file konfigurasi Nginx custom (jika diperlukan)
 # COPY nginx.conf /etc/nginx/nginx.conf
 
-# Atau menyalin file HTML statis untuk ditampilkan oleh Nginx
+# Menyalin file HTML statis untuk ditampilkan oleh Nginx (jika ada)
 # COPY ./html /usr/share/nginx/html
 
-# Menampilkan port yang digunakan oleh Nginx
+# Mengekspos port 80 untuk akses HTTP
 EXPOSE 80
 
 # Menjalankan Nginx dalam mode foreground
