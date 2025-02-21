@@ -56,9 +56,11 @@ jobs:
 
       - name: Install Trivy
         run: |
-          sudo apt-get update && sudo apt-get install -y wget
-          wget https://github.com/aquasecurity/trivy/releases/latest/download/trivy_amd64.deb
-          sudo dpkg -i trivy_amd64.deb
+          sudo apt-get install -y curl
+          curl -sfL https://aquasecurity.github.io/trivy-repo/deb.asc | sudo tee /etc/apt/trusted.gpg.d/trivy.asc
+          echo "deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main" | sudo tee -a /etc/apt/sources.list.d/trivy.list
+          sudo apt-get update
+          sudo apt-get install -y trivy
 
       - name: Load Docker Image
         run: docker load -i image.tar
