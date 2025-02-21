@@ -56,8 +56,8 @@ jobs:
 
       - name: Install Trivy
         run: |
-          sudo apt-get install -y curl
-          curl -sfL https://aquasecurity.github.io/trivy-repo/deb.asc | sudo tee /etc/apt/trusted.gpg.d/trivy.asc
+          sudo apt-get install -y curl gnupg
+          curl -fsSL https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo tee /etc/apt/trusted.gpg.d/trivy.asc > /dev/null
           echo "deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main" | sudo tee -a /etc/apt/sources.list.d/trivy.list
           sudo apt-get update
           sudo apt-get install -y trivy
