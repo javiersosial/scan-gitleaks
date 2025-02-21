@@ -39,7 +39,7 @@ jobs:
         run: docker save -o image.tar javiersosial/hello-world-gitaction:1.0
 
       - name: Upload Docker Image untuk Scan
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: docker-image
           path: image.tar
@@ -50,7 +50,7 @@ jobs:
     needs: build-image  # Scan hanya berjalan jika build sukses
     steps:
       - name: Download Docker Image
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: docker-image
 
